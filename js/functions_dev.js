@@ -37,14 +37,14 @@ $(window).resize(function() {
 
 function getHeartPoint(angle) {
 	var t = angle / Math.PI;
-	var x = 19.5 * (16 * Math.pow(Math.sin(t), 3));
-	var y = - 20 * (13 * Math.cos(t) - 5 * Math.cos(2 * t) - 2 * Math.cos(3 * t) - Math.cos(4 * t));
+	var x = Math.cos(t) * 200 + 30;
+	var y = - Math.sin(t) * 200 - 30;
 	return new Array(offsetX + x, offsetY + y);
 }
 
 function startHeartAnimation() {
 	var interval = 50;
-	var angle = 10;
+	var angle = 30;
 	var heart = new Array();
 	var animationTimer = setInterval(function () {
 		var bloom = getHeartPoint(angle);
@@ -61,7 +61,7 @@ function startHeartAnimation() {
 			heart.push(bloom);
 			garden.createRandomBloom(bloom[0], bloom[1]);
 		}
-		if (angle >= 30) {
+		if (angle >= 50) {
 			clearInterval(animationTimer);
 			showMessages();
 		} else {
@@ -86,7 +86,7 @@ function startHeartAnimation() {
 				if (progress >= str.length) {
 					clearInterval(timer);
 				}
-			}, 75);
+			}, 100);
 		});
 		return this;
 	};
@@ -116,15 +116,15 @@ function timeElapse(date){
 
 function showMessages() {
 	adjustWordsPosition();
-	$('#messages').fadeIn(5000, function() {
+	$('#messages').fadeIn(2500, function() {
 		showLoveU();
 	});
 }
 
 function adjustWordsPosition() {
 	$('#words').css("position", "absolute");
-	$('#words').css("top", $("#garden").position().top + 195);
-	$('#words').css("left", $("#garden").position().left + 70);
+	$('#words').css("top", $("#garden").position().top + 143);
+	$('#words').css("left", $("#garden").position().left + 179);
 }
 
 function adjustCodePosition() {
